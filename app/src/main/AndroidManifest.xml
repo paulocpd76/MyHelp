@@ -3,6 +3,7 @@
     package="pperez003.example.com.myhelp">
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-feature android:name="android.hardware.bluetooth_le" android:required="true"/>
     <!--<uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />-->
     <application
         android:allowBackup="true"

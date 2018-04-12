@@ -14,4 +14,13 @@
         android:layout_height="wrap_content"
         android:text="Tab1 Register"/>
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="35dp"
+        android:id="@+id/device"
+        android:layout_below="@+id/section_label"
+        android:layout_toEndOf="@+id/section_label" />
+
 </RelativeLayout>
