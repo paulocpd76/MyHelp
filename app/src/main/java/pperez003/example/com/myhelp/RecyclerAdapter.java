@@ -49,7 +49,7 @@ public class RecyclerAdapter  extends RecyclerView.Adapter<RecyclerAdapter.ViewH
         public ViewHolder(View itemView)
         {
             super(itemView);
-            System.out.print("Recycler");
+            //System.out.print("Recycler");
             //Initializing views
             //uuid = itemView.findViewById(R.id.uuid);
             //major = itemView.findViewById(R.id.major);
