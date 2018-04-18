@@ -51,11 +51,11 @@ public class RecyclerAdapter  extends RecyclerView.Adapter<RecyclerAdapter.ViewH
             super(itemView);
             //System.out.print("Recycler");
             //Initializing views
-            //uuid = itemView.findViewById(R.id.uuid);
-            //major = itemView.findViewById(R.id.major);
-            //minor = itemView.findViewById(R.id.minor);
-            //distance = itemView.findViewById(R.id.distance);
-            uuibecon = itemView.findViewById(R.id.uuibecon);
+            uuid = itemView.findViewById(R.id.uuid);
+            major = itemView.findViewById(R.id.major);
+            minor = itemView.findViewById(R.id.minor);
+            distance = itemView.findViewById(R.id.distance);
+            //uuibecon = itemView.findViewById(R.id.uuibecon);
         }
     }
 
@@ -75,20 +75,20 @@ public class RecyclerAdapter  extends RecyclerView.Adapter<RecyclerAdapter.ViewH
         if (arrayList.size()>0){
 
             // Displaying UUID
-            holder.uuid.setText(arrayList.get(0));
+           holder.uuid.setText(arrayList.get(0));
 
             //Displaying Major
-            holder.major.setText(arrayList.get(1));
+           holder.major.setText(arrayList.get(1));
 
             //Displaying Minor
             holder.minor.setText(arrayList.get(2));
 
             //Displaying distance
             holder.distance.setText(arrayList.get(3));
-
-            holder.uuibecon.setText("hola");
+            System.out.print("**"+arrayList.get(1)+"###");
+            //holder.uuibecon.setText("hola 1");
         }
-        holder.uuibecon.setText("hola");
+        //holder.uuibecon.setText("hola 2");
     }
     @Override
     public int getItemCount()
