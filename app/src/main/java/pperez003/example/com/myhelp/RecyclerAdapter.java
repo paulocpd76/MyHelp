@@ -12,10 +12,24 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+
+// new library
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
+//fin
+
+
+
+
 /*
      Adapter for Recycler View
 */
 public class RecyclerAdapter  extends RecyclerView.Adapter<RecyclerAdapter.ViewHolder> {
+
+
+
 
     ArrayList<ArrayList<String>> arr;
 
@@ -85,10 +99,27 @@ public class RecyclerAdapter  extends RecyclerView.Adapter<RecyclerAdapter.ViewH
 
             //Displaying distance
             holder.distance.setText(arrayList.get(3));
-            System.out.print("**"+arrayList.get(1)+"###");
+
+            //System.out.print("**"+arrayList.get(1)+"###");
             //holder.uuibecon.setText("hola 1");
         }
         //holder.uuibecon.setText("hola 2");
+
+        //new <code>
+
+        for (int i = 0; i < arrayList.size(); i++) {
+            //int value = elements.get(i);
+            System.out.println("*Element: " + arrayList.get(i)+"*");
+            System.out.println(arrayList.get(3));
+
+        }
+
+
+
+
+        // </code>
+
+
     }
     @Override
     public int getItemCount()

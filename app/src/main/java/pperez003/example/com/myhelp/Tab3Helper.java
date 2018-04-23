@@ -25,6 +25,7 @@ import org.altbeacon.beacon.MonitorNotifier;
 import org.altbeacon.beacon.RangeNotifier;
 import org.altbeacon.beacon.Region;
 
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -46,7 +47,9 @@ public class Tab3Helper extends Fragment implements BeaconConsumer {
     private BeaconManager beaconManager;
     // Progress bar
     private ProgressBar pb;
-
+    //new
+    public static final Identifier MY_MATCHING_IDENTIFIER = Identifier.fromInt(0x8b9c);
+    //end
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate (savedInstanceState);
@@ -153,10 +156,34 @@ public class Tab3Helper extends Fragment implements BeaconConsumer {
                     final ArrayList<ArrayList<String>> arrayList = new ArrayList<ArrayList<String>>();
 
                     // Iterating through all Beacons from Collection of Beacons
-                    for (Beacon b:beacons){
+                    for (Beacon b:beacons) {
+                        //new
 
+                            String receivedString = null;
+
+                           // byte[] bytes = b.getId2().toByteArray();
+                           //byte[] bytes = b.getId2().toByteArray();
+                                    byte[] bytes = b.getId1().toByteArray();
+
+
+
+
+
+                            receivedString = null;
+
+                            try {
+                                receivedString = new String(bytes, 0, bytes.length, "ASCII");
+
+
+                            } catch (UnsupportedEncodingException e) {
+                                e.printStackTrace();
+                            }
+
+                        String uuid = receivedString;
+
+                        //end new
                         //UUID
-                        String uuid = String.valueOf(b.getId1());
+                       // String uuid = String.valueOf(b.getId1());
 
                         //Major
                         String major = String.valueOf(b.getId2());
@@ -166,14 +193,18 @@ public class Tab3Helper extends Fragment implements BeaconConsumer {
                         // test
 
                         //Distance
-                        double distance1 =b.getDistance();
-                        String distance = String.valueOf(Math.round(distance1*100.0)/100.0);
+                        double distance1 = b.getDistance();
+                        String distance = String.valueOf(Math.round(distance1 * 100.0) / 100.0);
+                        //Name
+                        String nameUser = b.getBluetoothName();
+
 
                         ArrayList<String> arr = new ArrayList<String>();
                         arr.add(uuid);
                         arr.add(major);
                         arr.add(minor);
                         arr.add(distance + " meters");
+                        arr.add(nameUser);
                         arrayList.add(arr);
                         //System.out.print("**"+b.getId1()+"**");
                         //System.out.print("**"+arrayList.size()+"**");
