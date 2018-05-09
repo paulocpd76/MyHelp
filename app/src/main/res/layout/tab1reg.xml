@@ -9,18 +9,77 @@
     tools:context="pperez003.example.com.myhelp.MainActivity$PlaceholderFragment">
 
     <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="35dp"
+        android:id="@+id/device"
+        android:layout_below="@+id/section_label"
+        android:layout_toEndOf="@+id/section_label"
+        android:textColor="@color/colorAccent"
+        android:textSize="12sp" />
+
+    <TextView
         android:id="@+id/section_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Tab1 Register"/>
+        android:text="Name User:"
+        android:textStyle="normal|bold"
+        android:layout_alignBaseline="@+id/userText"
+        android:layout_alignBottom="@+id/userText"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:text="Emergency Num:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView4"
+        android:layout_below="@+id/userText"
+        android:layout_alignParentStart="true"
+        android:textStyle="normal|bold" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="35dp"
-        android:id="@+id/device"
-        android:layout_below="@+id/section_label"
-        android:layout_toEndOf="@+id/section_label" />
+        android:id="@+id/helpId"
+        android:text="Off"
+        android:textStyle="normal|bold"
+        android:layout_below="@+id/buttoSos"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="19dp"
+        android:textSize="30sp"
+        android:textColor="@android:color/holo_green_light" />
+
+    <Button
+        android:text="S.O.S"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/buttoSos"
+        android:layout_marginTop="23dp"
+        android:layout_below="@+id/device"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/colorAccent"
+        android:textStyle="normal|bold" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:text="Cesar"
+        android:ems="10"
+        android:id="@+id/userText"
+        android:layout_marginTop="11dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/helpId"
+        android:layout_marginStart="20dp" />
+
+    <EditText
+        android:text="0659356021"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/emerNumber"
+        android:textStyle="normal|bold"
+        android:layout_alignBaseline="@+id/textView4"
+        android:layout_alignBottom="@+id/textView4"
+        android:layout_alignStart="@+id/userText" />
 
 </RelativeLayout>

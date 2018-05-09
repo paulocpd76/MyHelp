@@ -63,8 +63,7 @@ public class Tab3Helper extends Fragment implements BeaconConsumer {
                 setBeaconLayout ("m:2-3=beac,i:4-19,i:20-21,i:22-23,p:24-24,d:25-25"));
 
         //Binding MainActivity to the BeaconService.
-
-        beaconManager.bind (this);
+                beaconManager.bind (this);
     }
 
     @Override
@@ -89,12 +88,12 @@ public class Tab3Helper extends Fragment implements BeaconConsumer {
 
     public void onBeaconServiceConnect() {
         final Region region = new  Region("myBeaons",null, null, null);
-
         beaconManager.addMonitorNotifier (new MonitorNotifier ( ) {
 
             public void didEnterRegion(Region region) {
                 try {
                     // Log.d(TAG, "didEnterRegion");
+
                     beaconManager.startRangingBeaconsInRegion (region);
                 } catch (RemoteException e) {
                     e.printStackTrace ( );
@@ -242,16 +241,6 @@ public class Tab3Helper extends Fragment implements BeaconConsumer {
         }
 
     }
-
-
-
-
-
-
-
-
-
-
     /*
          If we are implementing the BeaconConsumer interface in a Fragment
         (and not an Activity, Service or Application instance),
