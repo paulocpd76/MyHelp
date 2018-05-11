@@ -10,7 +10,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
         <TextView
             android:id="@+id/card_one"
             android:textColor="?android:attr/textColorLink"
@@ -19,7 +19,7 @@
             android:textSize="20sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Emergency contact:"/>
+            android:text="Contact:"/>
 
         <TextView
             android:id="@+id/uuid"
@@ -28,7 +28,7 @@
             android:layout_height="wrap_content"
             android:layout_toRightOf="@id/card_one"
             android:paddingLeft="30sp"
-            android:textSize="18sp"
+            android:textSize="12sp"
             android:text="Hello"
             android:textStyle="normal|bold" />
 

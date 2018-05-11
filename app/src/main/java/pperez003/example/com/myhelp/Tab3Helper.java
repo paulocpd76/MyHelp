@@ -162,7 +162,7 @@ public class Tab3Helper extends Fragment implements BeaconConsumer {
 
                            // byte[] bytes = b.getId2().toByteArray();
                            //byte[] bytes = b.getId2().toByteArray();
-                                    byte[] bytes = b.getId1().toByteArray();
+                              byte[] bytes = b.getId1().toByteArray();
 
 
 
@@ -199,12 +199,25 @@ public class Tab3Helper extends Fragment implements BeaconConsumer {
 
 
                         ArrayList<String> arr = new ArrayList<String>();
-                        arr.add(uuid);
-                        arr.add(major);
-                        arr.add(minor);
-                        arr.add(distance + " meters");
-                        arr.add(nameUser);
+
+                        if(distance1<1){
+                           // System.out.print("**entroooooooo");
+                            arr.add(uuid);
+                            arr.add(major);
+                            arr.add(minor);
+                            arr.add(distance + " meters");
+                            arr.add(nameUser);
+                        }
+                        else{
+                            arr.add("help");
+                            arr.add("0");
+                            arr.add("0");
+                            arr.add(distance + " meters");
+                            arr.add("0");
+
+                        }
                         arrayList.add(arr);
+
                         //System.out.print("**"+b.getId1()+"**");
                         //System.out.print("**"+arrayList.size()+"**");
                     }
