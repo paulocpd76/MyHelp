@@ -25,6 +25,7 @@ import org.altbeacon.beacon.MonitorNotifier;
 import org.altbeacon.beacon.RangeNotifier;
 import org.altbeacon.beacon.Region;
 
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -46,7 +47,9 @@ public class Tab3Helper extends Fragment implements BeaconConsumer {
     private BeaconManager beaconManager;
     // Progress bar
     private ProgressBar pb;
-
+    //new
+    public static final Identifier MY_MATCHING_IDENTIFIER = Identifier.fromInt(0x8b9c);
+    //end
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate (savedInstanceState);
@@ -60,8 +63,7 @@ public class Tab3Helper extends Fragment implements BeaconConsumer {
                 setBeaconLayout ("m:2-3=beac,i:4-19,i:20-21,i:22-23,p:24-24,d:25-25"));
 
         //Binding MainActivity to the BeaconService.
-
-        beaconManager.bind (this);
+                beaconManager.bind (this);
     }
 
     @Override
@@ -86,12 +88,12 @@ public class Tab3Helper extends Fragment implements BeaconConsumer {
 
     public void onBeaconServiceConnect() {
         final Region region = new  Region("myBeaons",null, null, null);
-
         beaconManager.addMonitorNotifier (new MonitorNotifier ( ) {
 
             public void didEnterRegion(Region region) {
                 try {
                     // Log.d(TAG, "didEnterRegion");
+
                     beaconManager.startRangingBeaconsInRegion (region);
                 } catch (RemoteException e) {
                     e.printStackTrace ( );
@@ -120,8 +122,127 @@ public class Tab3Helper extends Fragment implements BeaconConsumer {
 
             public void didRangeBeaconsInRegion(Collection<Beacon> beacons, Region region) {
               //  Log.d(TAG, "distance: " + oneBeacon.getDistance() + " id:" + oneBeacon.getId1() + "/" + oneBeacon.getId2() + "/" + oneBeacon.getId3());
+                /*
                 for (Beacon oneBeacon : beacons) {
-                    System.out.println ("Major value =" +oneBeacon.getId2 ());}
+                    System.out.println ("Major value =" +oneBeacon.getId2 ()+ "size =" +beacons.size () + "*");
+                }
+                */
+                if(beacons.size()>0){
+                   //System.out.print("**"+beacons.size()+"**");
+                    try{
+                        getActivity().runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+
+                                // Make ProgressBar Invisible
+                                //pb.setVisibility(View.INVISIBLE);
+
+                                // Make Relative Layout to be Gone
+                                rl.setVisibility(View.GONE);
+
+                                //Make RecyclerView to be visible
+                                rv.setVisibility(View.VISIBLE);
+
+                                // Setting up the layout manager to be linear
+                                layoutManager = new LinearLayoutManager(getActivity());
+                                rv.setLayoutManager(layoutManager);
+                            }
+                        });
+                    }
+                    catch(Exception e){
+
+                    }
+                    final ArrayList<ArrayList<String>> arrayList = new ArrayList<ArrayList<String>>();
+
+                    // Iterating through all Beacons from Collection of Beacons
+                    for (Beacon b:beacons) {
+                        //new
+
+                            String receivedString = null;
+
+                           // byte[] bytes = b.getId2().toByteArray();
+                           //byte[] bytes = b.getId2().toByteArray();
+                              byte[] bytes = b.getId1().toByteArray();
+
+
+
+
+
+                            receivedString = null;
+
+                            try {
+                                receivedString = new String(bytes, 0, bytes.length, "ASCII");
+
+
+                            } catch (UnsupportedEncodingException e) {
+                                e.printStackTrace();
+                            }
+
+                        String uuid = receivedString;
+
+                        //end new
+                        //UUID
+                       // String uuid = String.valueOf(b.getId1());
+
+                        //Major
+                        String major = String.valueOf(b.getId2());
+
+                        //Minor
+                        String minor = String.valueOf(b.getId3());
+                        // test
+
+                        //Distance
+                        double distance1 = b.getDistance();
+                        String distance = String.valueOf(Math.round(distance1 * 100.0) / 100.0);
+                        //Name
+                        String nameUser = b.getBluetoothName();
+
+
+                        ArrayList<String> arr = new ArrayList<String>();
+
+                        if(distance1<1){
+                           // System.out.print("**entroooooooo");
+                            arr.add(uuid);
+                            arr.add(major);
+                            arr.add(minor);
+                            arr.add(distance + " meters");
+                            arr.add(nameUser);
+                        }
+                        else{
+                            arr.add("help");
+                            arr.add("0");
+                            arr.add("0");
+                            arr.add(distance + " meters");
+                            arr.add("0");
+
+                        }
+                        arrayList.add(arr);
+
+                        //System.out.print("**"+b.getId1()+"**");
+                        //System.out.print("**"+arrayList.size()+"**");
+                    }
+
+                    try {
+                        getActivity().runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+
+                                // Setting Up the Adapter for Recycler View
+                                adapter = new RecyclerAdapter(arrayList);
+                                rv.setAdapter(adapter);
+                                adapter.notifyDataSetChanged();
+                            }
+                        });
+                    }catch(Exception e){
+
+                    }
+
+
+
+
+                    //fin
+
+                }
             }
 
         });
@@ -133,16 +254,6 @@ public class Tab3Helper extends Fragment implements BeaconConsumer {
         }
 
     }
-
-
-
-
-
-
-
-
-
-
     /*
          If we are implementing the BeaconConsumer interface in a Fragment
         (and not an Activity, Service or Application instance),
