@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.ServiceConnection;
 import android.os.Bundle;
 import android.os.RemoteException;
+import android.os.Vibrator;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -50,9 +51,13 @@ public class Tab3Helper extends Fragment implements BeaconConsumer {
     //new
     public static final Identifier MY_MATCHING_IDENTIFIER = Identifier.fromInt(0x8b9c);
     //end
-    @Override
+
+
+
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate (savedInstanceState);
+        // Create Vibrator instance for current context
+
 
         //getting beaconManager instance (object) for Main Activity class
         beaconManager = BeaconManager.getInstanceForApplication (getActivity ( ));
@@ -209,6 +214,7 @@ public class Tab3Helper extends Fragment implements BeaconConsumer {
                             arr.add(nameUser);
                         }
                         else{
+
                             arr.add("help");
                             arr.add("0");
                             arr.add("0");

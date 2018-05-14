@@ -46,12 +46,17 @@ public class MainActivity extends AppCompatActivity {
      */
     private static final int PERMISSION_REQUEST_COARSE_LOCATION = 1;
 
+    /**
+     * Permition open file txt
+     */
+    private static final int REQUEST_WRITE_PERMISSION = 1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         // Checking Permission whether ACCESS_COARSE_LOCATION permssion is granted or not
         checkPermission();
-
+        //Permission whether ACCESS_.WRITE_EXTERNAL_STORAGE}, REQUEST_WRITE_PERMISSION
+        requestPermission();
         setContentView(R.layout.activity_main);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -78,7 +83,16 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Method allows to used manifest permition
+     */
+    private void requestPermission() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            requestPermissions(new String[]{android.Manifest.permission.WRITE_EXTERNAL_STORAGE}, REQUEST_WRITE_PERMISSION);
+        } else {
 
+        }
+    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
