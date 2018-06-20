@@ -69,7 +69,8 @@
         android:layout_marginTop="11dp"
         android:layout_alignParentTop="true"
         android:layout_alignStart="@+id/helpId"
-        android:layout_marginStart="20dp" />
+        android:layout_marginStart="20dp"
+        android:text="@string/hot" />
 
     <EditText
         android:text="0659356021"

@@ -205,7 +205,7 @@ public class Tab3Helper extends Fragment implements BeaconConsumer {
 
                         ArrayList<String> arr = new ArrayList<String>();
 
-                        if(distance1<1){
+                        if(distance1<=1){
                            // System.out.print("**entroooooooo");
                             arr.add(uuid);
                             arr.add(major);
@@ -213,13 +213,22 @@ public class Tab3Helper extends Fragment implements BeaconConsumer {
                             arr.add(distance + " meters");
                             arr.add(nameUser);
                         }
-                        else{
-
+                        if(1<distance1 && distance1<3){
+                            // System.out.print("**entroooooooo");
                             arr.add("help");
                             arr.add("0");
                             arr.add("0");
                             arr.add(distance + " meters");
                             arr.add("0");
+                        }
+
+                        else{
+
+                            arr.add("n/a");
+                            arr.add("-");
+                            arr.add("-");
+                            arr.add("--" + " meters");
+                            arr.add("--");
 
                         }
                         arrayList.add(arr);
